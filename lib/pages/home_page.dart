@@ -70,6 +70,7 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
+                  CoffeeCard(),
                   CoffeeCard()
                 ],
               ),
