@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/controllers/Add_to_wishlist.dart';
@@ -32,8 +34,17 @@ class _VerticalCoffeeCardState extends State<VerticalCoffeeCard> {
         padding: const EdgeInsets.all(18),
         height: height * 0.2,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromARGB(255, 37, 43, 51),
+            ),
+            BoxShadow(
+                offset: Offset.fromDirection(5, 0),
+                color: Color.fromARGB(255, 17, 20, 25),
+                blurRadius: 20,
+                spreadRadius: -10)
+          ],
           borderRadius: BorderRadius.circular(20),
-          color: Colors.black54,
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,6 +78,7 @@ class _VerticalCoffeeCardState extends State<VerticalCoffeeCard> {
                     Padding(
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: Text(widget.productName),
+
                     ),
                     SizedBox(
                       height: height * 0.01,
@@ -83,20 +95,24 @@ class _VerticalCoffeeCardState extends State<VerticalCoffeeCard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text.rich(
+                          const Text.rich(
                             TextSpan(
                               text: '\$ ',
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 209, 119, 66)),
                               children: <InlineSpan>[
                                 TextSpan(
                                   text: widget.price.toString(),
                                   style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.orange),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white
+                                  ),
                                 )
                               ],
                             ),
                           ),
+
                           InkWell(
                             splashColor: Colors.lightGreenAccent,
                             onTap: () {
@@ -116,6 +132,7 @@ class _VerticalCoffeeCardState extends State<VerticalCoffeeCard> {
                               child: Icon(
                                 Icons.add,
                               ),
+
                             ),
                           ),
                         ],

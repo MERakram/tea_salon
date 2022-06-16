@@ -1,12 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/controllers/Add_to_wishlist.dart';
 import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
+
+import 'package:tea_salon/controllers/FetchData.dart';
+import 'package:tea_salon/pages/favorite_page.dart';
+import 'package:tea_salon/pages/notification_page.dart';
 
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
@@ -18,10 +19,27 @@ class HomePage extends StatelessWidget {
   final fetch_Latest_Offers = Get.put(Fetch_Latest_Offers());
 
   @override
+
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  static const List<Widget> _widgetOptions = <Widget>[
+    HomePage(),
+    FavoritePage(),
+    NotificationPage()
+  ];
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+  @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    final fetchData = Get.put(FetchData());
+    Size size = MediaQuery.of(context).size;
+
     double height = size.height;
     double width = size.width;
     return GestureDetector(
@@ -35,7 +53,7 @@ class HomePage extends StatelessWidget {
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Colors.grey[900],
+          backgroundColor: Color.fromARGB(255, 12, 15, 20),
           appBar: AppBar(
             leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
             actions: [
@@ -49,6 +67,10 @@ class HomePage extends StatelessWidget {
             backgroundColor: Colors.transparent,
           ),
           bottomNavigationBar: BottomNavigationBar(
+            iconSize: 26,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            onTap: _onItemTapped,
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
@@ -81,15 +103,17 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.transparent),
+                      borderSide: BorderSide(color: Colors.transparent),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: SvgPicture.asset(
-                        'assets/images/search.svg', color: Colors.grey[600],
-                        width: 10,),
+
+                        'assets/images/search.svg',
+                        color: Colors.grey[600],
+                        width: 10,
+                      ),
                     ),
                     hintText: 'Find your coffee ...',
                   ),
@@ -133,6 +157,7 @@ class HomePage extends StatelessWidget {
                       },
                     );
                   }
+
                 ),
               ),
               SizedBox(
