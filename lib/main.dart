@@ -15,8 +15,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        useMaterial3: true,
         brightness: Brightness.dark,
         primarySwatch: Colors.orange,
+        accentColor: const Color.fromARGB(255, 209, 119, 66),
       ),
       home: HomePage(),
     );
