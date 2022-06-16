@@ -4,8 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/controllers/Add_to_wishlist.dart';
 import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
-
-import 'package:tea_salon/controllers/FetchData.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
 
@@ -14,38 +12,38 @@ import '../components/vertical_coffee_cards.dart';
 import '../controllers/Fetch_Latest_Offers.dart';
 import 'ProfilePage.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   final fetch_Special_Offers = Get.put(Fetch_Special_Offers());
   final fetch_Latest_Offers = Get.put(Fetch_Latest_Offers());
+  final add_to_wishlist_controller = Get.put(Add_to_wishlist_controller());
+
 
   @override
-
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
     FavoritePage(),
     NotificationPage()
   ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    final fetchData = Get.put(FetchData());
     Size size = MediaQuery.of(context).size;
-
     double height = size.height;
     double width = size.width;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
-
         if (!currentFocus.hasPrimaryFocus) {
           currentFocus.unfocus();
         }
@@ -109,7 +107,6 @@ class _HomePageState extends State<HomePage> {
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: SvgPicture.asset(
-
                         'assets/images/search.svg',
                         color: Colors.grey[600],
                         width: 10,
@@ -140,25 +137,22 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: height * 0.41,
                 // color: Colors.green,
-                child: GetX<Fetch_Latest_Offers>(
-                  builder: (controller) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: controller.productList.length,
-                      physics: const BouncingScrollPhysics(parent: null),
-                      itemBuilder: (BuildContext context, int index) {
-                        return HorizontalCoffeeCard(
-                            controller.productList[index].id,
-                            controller.productList[index].productName,
-                            controller.productList[index].productImage,
-                            controller.productList[index].productDescription,
-                            controller.productList[index].price);
-                      },
-                    );
-                  }
-
-                ),
+                child: GetX<Fetch_Latest_Offers>(builder: (controller) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: controller.productList.length,
+                    physics: const BouncingScrollPhysics(parent: null),
+                    itemBuilder: (BuildContext context, int index) {
+                      return HorizontalCoffeeCard(
+                          controller.productList[index].id,
+                          controller.productList[index].productName,
+                          controller.productList[index].productImage,
+                          controller.productList[index].productDescription,
+                          controller.productList[index].price);
+                    },
+                  );
+                }),
               ),
               SizedBox(
                 height: height * 0.03,
@@ -175,36 +169,37 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: height * 0.03,
               ),
-              GetX<Fetch_Special_Offers>(
-                  builder: (controller) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: controller.productList.length,
-                      physics: const BouncingScrollPhysics(parent: null),
-                      itemBuilder: (BuildContext context, int index) {
-                        return VerticalCoffeeCard(
-                            controller.productList[index].id,
-                            controller.productList[index].productName,
-                            controller.productList[index].productImage,
-                            controller.productList[index].productDescription,
-                            controller.productList[index].price);
-                      },
-                    );
-                  }
-              ),
+              GetX<Fetch_Special_Offers>(builder: (controller) {
+                return ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: controller.productList.length,
+                  physics: const BouncingScrollPhysics(parent: null),
+                  itemBuilder: (BuildContext context, int index) {
+                    return VerticalCoffeeCard(
+                        controller.productList[index].id,
+                        controller.productList[index].productName,
+                        controller.productList[index].productImage,
+                        controller.productList[index].productDescription,
+                        controller.productList[index].price);
+                  },
+                );
+              }),
             ],
           ),
           floatingActionButton: FloatingActionButton.extended(
             //chekout
-              onPressed: () {},
-              backgroundColor: Colors.orange,
-              icon: Icon(Icons.add_shopping_cart_rounded),
-              label: GetX<Add_to_wishlist_controller>(
-                builder: (controller) {
-                  return Text(controller.totalPrice.toString());
-                }
-              )),
+            onPressed: () {},
+            backgroundColor: Colors.orange,
+            icon: Icon(Icons.add_shopping_cart_rounded),
+            label: GetX<Add_to_wishlist_controller>(
+              builder: (controller) {
+                return Text(controller.totalPrice.toString() == null
+                    ? '0.0'
+                    : controller.totalPrice.toString());
+              },
+            ),
+          ),
         ),
       ),
     );

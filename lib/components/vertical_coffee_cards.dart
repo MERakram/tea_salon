@@ -95,7 +95,7 @@ class _VerticalCoffeeCardState extends State<VerticalCoffeeCard> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Text.rich(
+                           Text.rich(
                             TextSpan(
                               text: '\$ ',
                               style: TextStyle(
