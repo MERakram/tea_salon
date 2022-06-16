@@ -2,17 +2,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:tea_salon/controllers/Add_to_wishlist.dart';
+import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
+
 import 'package:tea_salon/controllers/FetchData.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
+
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
+import '../controllers/Fetch_Latest_Offers.dart';
 import 'ProfilePage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final fetch_Special_Offers = Get.put(Fetch_Special_Offers());
+  final fetch_Latest_Offers = Get.put(Fetch_Latest_Offers());
 
   @override
+
   State<HomePage> createState() => _HomePageState();
 }
 
@@ -32,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final fetchData = Get.put(FetchData());
     Size size = MediaQuery.of(context).size;
+
     double height = size.height;
     double width = size.width;
     return GestureDetector(
@@ -101,6 +109,7 @@ class _HomePageState extends State<HomePage> {
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: SvgPicture.asset(
+
                         'assets/images/search.svg',
                         color: Colors.grey[600],
                         width: 10,
@@ -131,14 +140,24 @@ class _HomePageState extends State<HomePage> {
               Container(
                 height: height * 0.41,
                 // color: Colors.green,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 4,
-                  physics: const BouncingScrollPhysics(parent: null),
-                  itemBuilder: (BuildContext context, int index) {
-                    return HorizontalCoffeeCard();
-                  },
+                child: GetX<Fetch_Latest_Offers>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.productList.length,
+                      physics: const BouncingScrollPhysics(parent: null),
+                      itemBuilder: (BuildContext context, int index) {
+                        return HorizontalCoffeeCard(
+                            controller.productList[index].id,
+                            controller.productList[index].productName,
+                            controller.productList[index].productImage,
+                            controller.productList[index].productDescription,
+                            controller.productList[index].price);
+                      },
+                    );
+                  }
+
                 ),
               ),
               SizedBox(
@@ -156,17 +175,36 @@ class _HomePageState extends State<HomePage> {
               SizedBox(
                 height: height * 0.03,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: 4,
-                physics: const BouncingScrollPhysics(parent: null),
-                itemBuilder: (BuildContext context, int index) {
-                  return VerticalCoffeeCard();
-                },
+              GetX<Fetch_Special_Offers>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: controller.productList.length,
+                      physics: const BouncingScrollPhysics(parent: null),
+                      itemBuilder: (BuildContext context, int index) {
+                        return VerticalCoffeeCard(
+                            controller.productList[index].id,
+                            controller.productList[index].productName,
+                            controller.productList[index].productImage,
+                            controller.productList[index].productDescription,
+                            controller.productList[index].price);
+                      },
+                    );
+                  }
               ),
             ],
           ),
+          floatingActionButton: FloatingActionButton.extended(
+            //chekout
+              onPressed: () {},
+              backgroundColor: Colors.orange,
+              icon: Icon(Icons.add_shopping_cart_rounded),
+              label: GetX<Add_to_wishlist_controller>(
+                builder: (controller) {
+                  return Text(controller.totalPrice.toString());
+                }
+              )),
         ),
       ),
     );
