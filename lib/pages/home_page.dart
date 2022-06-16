@@ -5,34 +5,33 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:tea_salon/controllers/FetchData.dart';
+import 'package:tea_salon/controllers/Add_to_wishlist.dart';
+import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
 
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
+import '../controllers/Fetch_Latest_Offers.dart';
 import 'ProfilePage.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final fetch_Special_Offers = Get.put(Fetch_Special_Offers());
+  final fetch_Latest_Offers = Get.put(Fetch_Latest_Offers());
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final fetchData =Get.put(FetchData());
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     double height = size.height;
     double width = size.width;
     return GestureDetector(
-        onTap: () {
-      FocusScopeNode currentFocus = FocusScope.of(context);
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
 
-      if (!currentFocus.hasPrimaryFocus) {
-        currentFocus.unfocus();
-      }
-    },
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
@@ -53,7 +52,8 @@ class _HomePageState extends State<HomePage> {
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
-              BottomNavigationBarItem(icon: Icon(Icons.notifications), label: ''),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications), label: ''),
             ],
           ),
           body: ListView(
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               // best coffee for you
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: width*0.065),
+                padding: EdgeInsets.symmetric(horizontal: width * 0.065),
                 child: Text(
                   'Find the best coffee for you',
                   style: TextStyle(
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: height*0.03,
+                height: height * 0.03,
               ),
               // search bar
               Container(
@@ -87,14 +87,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
-                      child: SvgPicture.asset('assets/images/search.svg',color: Colors.grey[600],width: 10,),
+                      child: SvgPicture.asset(
+                        'assets/images/search.svg', color: Colors.grey[600],
+                        width: 10,),
                     ),
                     hintText: 'Find your coffee ...',
                   ),
                 ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                   color: Colors.transparent,
+                  color: Colors.transparent,
                   boxShadow: [
                     BoxShadow(
                       color: const Color(0xFF777676).withOpacity(0.1),
@@ -104,31 +106,40 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                width: width*0.9,
-                margin: EdgeInsets.symmetric(horizontal:width*0.05),
+                width: width * 0.9,
+                margin: EdgeInsets.symmetric(horizontal: width * 0.05),
               ),
               SizedBox(
-                height: height*0.03,
+                height: height * 0.03,
               ),
               // horiwontal coffee list
               Container(
-                height: height*0.41,
+                height: height * 0.41,
                 // color: Colors.green,
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 4,
-                  physics: const BouncingScrollPhysics(parent: null),
-                  itemBuilder: (BuildContext context, int index) {
-                   return HorizontalCoffeeCard();
-                  },
+                child: GetX<Fetch_Latest_Offers>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controller.productList.length,
+                      physics: const BouncingScrollPhysics(parent: null),
+                      itemBuilder: (BuildContext context, int index) {
+                        return HorizontalCoffeeCard(
+                            controller.productList[index].id,
+                            controller.productList[index].productName,
+                            controller.productList[index].productImage,
+                            controller.productList[index].productDescription,
+                            controller.productList[index].price);
+                      },
+                    );
+                  }
                 ),
               ),
               SizedBox(
-                height: height*0.03,
+                height: height * 0.03,
               ),
               Padding(
-                padding:  EdgeInsets.symmetric(horizontal: width*0.07),
+                padding: EdgeInsets.symmetric(horizontal: width * 0.07),
                 child: Text(
                   'For You',
                   style: TextStyle(
@@ -137,19 +148,38 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               SizedBox(
-                height: height*0.03,
+                height: height * 0.03,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                itemCount: 4,
-                physics: const BouncingScrollPhysics(parent: null),
-                itemBuilder: (BuildContext context, int index) {
-                  return VerticalCoffeeCard();
-                },
+              GetX<Fetch_Special_Offers>(
+                  builder: (controller) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      itemCount: controller.productList.length,
+                      physics: const BouncingScrollPhysics(parent: null),
+                      itemBuilder: (BuildContext context, int index) {
+                        return VerticalCoffeeCard(
+                            controller.productList[index].id,
+                            controller.productList[index].productName,
+                            controller.productList[index].productImage,
+                            controller.productList[index].productDescription,
+                            controller.productList[index].price);
+                      },
+                    );
+                  }
               ),
             ],
           ),
+          floatingActionButton: FloatingActionButton.extended(
+            //chekout
+              onPressed: () {},
+              backgroundColor: Colors.orange,
+              icon: Icon(Icons.add_shopping_cart_rounded),
+              label: GetX<Add_to_wishlist_controller>(
+                builder: (controller) {
+                  return Text(controller.totalPrice.toString());
+                }
+              )),
         ),
       ),
     );

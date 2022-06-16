@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HorizontalCoffeeCard extends StatelessWidget {
-  const HorizontalCoffeeCard({Key? key}) : super(key: key);
+class HorizontalCoffeeCard extends StatefulWidget {
+  final int id;
+  final String productName;
+  final String productImage;
+  final String productDescription;
+  final double price;
+  HorizontalCoffeeCard(this.id, this.productName, this.productImage, this.productDescription, this.price);
 
+  @override
+  State<HorizontalCoffeeCard> createState() => _HorizontalCoffeeCardState();
+}
+
+class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,12 +37,12 @@ class HorizontalCoffeeCard extends StatelessWidget {
              SizedBox(
               height: height*0.01,
             ),
-            const Text('Coffee'),
+            Text(widget.productName),
              SizedBox(
               height: height*0.01,
             ),
             Text(
-              'With milk',
+              widget.productDescription,
               style: TextStyle(color: Colors.grey[500]),
             ),
             Padding(
@@ -40,12 +50,12 @@ class HorizontalCoffeeCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text.rich(
+                   Text.rich(
                     TextSpan(
                       text: '\$ ',
                       children: <InlineSpan>[
                         TextSpan(
-                          text: '4.5',
+                          text: widget.price.toString(),
                           style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
