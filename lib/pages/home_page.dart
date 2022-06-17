@@ -8,6 +8,7 @@ import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
 import 'package:tea_salon/pages/profilelanding.dart';
 
+import '../components/Gradient_outline.dart';
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
 import '../controllers/Fetch_Latest_Offers.dart';
@@ -53,13 +54,67 @@ class _HomePageState extends State<HomePage> {
           resizeToAvoidBottomInset: false,
           backgroundColor: Color(0xFF0c0f14),
           appBar: AppBar(
-            leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
+            leading: InkWell(
+              borderRadius: BorderRadius.circular(15),
+              onTap:()=>Get.to(ProfileLanding()),
+              child: Container(
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xFF262a33).withOpacity(1),
+                      Color(0xFF262a33).withOpacity(0.8),
+                      Color(0xFF262a33).withOpacity(0.6),
+                      Color(0xFF262a33).withOpacity(0.2),
+                      Color(0xFF262a33).withOpacity(0.1),
+                      Color(0xFF262a33).withOpacity(0.05),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(7.0),
+                  child: SvgPicture.asset(
+                    'assets/images/apps.svg',
+                    color: Colors.grey[600],
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
+              ),
+            ),
             actions: [
-              IconButton(
-                  onPressed: () {
-                    Get.to(() => ProfileLanding());
-                  },
-                  icon: Icon(Icons.person))
+              InkWell(
+                borderRadius: BorderRadius.circular(15),
+                onTap:()=>Get.to(ProfileLanding()),
+                child: Container(
+                  margin: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color(0xFF262a33).withOpacity(1),
+                        Color(0xFF262a33).withOpacity(0.8),
+                        Color(0xFF262a33).withOpacity(0.6),
+                        Color(0xFF262a33).withOpacity(0.2),
+                        Color(0xFF262a33).withOpacity(0.1),
+                        Color(0xFF262a33).withOpacity(0.05),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: SvgPicture.asset(
+                      'assets/images/user.svg',
+                      color: Colors.grey[600],
+                      fit: BoxFit.scaleDown,
+                    ),
+                  ),
+                ),
+              ),
             ],
             elevation: 0,
             backgroundColor: Colors.transparent,
@@ -94,6 +149,21 @@ class _HomePageState extends State<HomePage> {
               ),
               // search bar
               Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.transparent,
+                  boxShadow: [
+                    BoxShadow(
+                      // color: const Color(0xFF777676).withOpacity(0.1),
+                      color: const Color(0xFF141921).withOpacity(1),
+                      spreadRadius: -2,
+                      blurRadius: 2,
+                      offset: Offset(0, 0),
+                    ),
+                  ],
+                ),
+                width: width * 0.9,
+                margin: EdgeInsets.symmetric(horizontal: width * 0.05),
                 child: TextField(
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
@@ -115,28 +185,13 @@ class _HomePageState extends State<HomePage> {
                     hintText: 'Find your coffee ...',
                   ),
                 ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.transparent,
-                  boxShadow: [
-                    BoxShadow(
-                      // color: const Color(0xFF777676).withOpacity(0.1),
-                      color: const Color(0xFF141921).withOpacity(1),
-                      spreadRadius: -2,
-                      blurRadius: 2,
-                      offset: Offset(0, 0),
-                    ),
-                  ],
-                ),
-                width: width * 0.9,
-                margin: EdgeInsets.symmetric(horizontal: width * 0.05),
               ),
               SizedBox(
                 height: height * 0.03,
               ),
               // horiwontal coffee list
               Container(
-                height: height * 0.41,
+                height: height * 0.36,
                 // color: Colors.green,
                 child: GetX<Fetch_Latest_Offers>(builder: (controller) {
                   return ListView.builder(
@@ -195,9 +250,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.add_shopping_cart_rounded),
             label: GetX<Add_to_wishlist_controller>(
               builder: (controller) {
-                return Text(controller.totalPrice.toString() == null
-                    ? '0.0'
-                    : controller.totalPrice.toString());
+                return Text(controller.totalPrice.toString());
               },
             ),
           ),
