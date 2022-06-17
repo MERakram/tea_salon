@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: Color.fromARGB(255, 12, 15, 20),
+          backgroundColor: Color(0xFF0c0f14),
           appBar: AppBar(
             leading: IconButton(onPressed: () {}, icon: Icon(Icons.menu)),
             actions: [
@@ -120,7 +120,8 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.transparent,
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF777676).withOpacity(0.1),
+                      // color: const Color(0xFF777676).withOpacity(0.1),
+                      color: const Color(0xFF141921).withOpacity(1),
                       spreadRadius: -2,
                       blurRadius: 2,
                       offset: Offset(0, 0),

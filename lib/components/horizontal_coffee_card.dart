@@ -24,8 +24,19 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
         padding: const EdgeInsets.all(18),
         width: width * 0.5,
         decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF262a33).withOpacity(0.8),
+              Color(0xFF262a33).withOpacity(0.4),
+              Color(0xFF262a33).withOpacity(0.3),
+              Color(0xFF262a33).withOpacity(0.2),
+              Color(0xFF262a33).withOpacity(0.1),
+              Color(0xFF262a33).withOpacity(0.05),
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
           borderRadius: BorderRadius.circular(20),
-          color: Color.fromARGB(255, 17, 20, 25),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,13 +73,11 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-
                    Text.rich(
-
                     TextSpan(
                       text: '\$ ',
                       style:
-                          TextStyle(color: Color.fromARGB(255, 209, 119, 66)),
+                          TextStyle(color: Colors.orange),
                       children: <InlineSpan>[
                         TextSpan(
                           text: widget.price.toString(),
@@ -84,7 +93,7 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Color.fromARGB(255, 209, 119, 66)),
+                        color: Colors.orange),
                     child: const Icon(
                       Icons.add,
                     ),
