@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "944154629109",
+    "project_id": "tea-salon-8fdca",
+    "storage_bucket": "tea-salon-8fdca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:944154629109:android:a3cee0dcae077f197d06bc",
+        "android_client_info": {
+          "package_name": "com.example.tea_salon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "944154629109-uktcsqp7prkttt3vtsmca9jm907rtm49.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqpDMfongjwJRsx5obo12Ze8uoz8GeUow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "944154629109-uktcsqp7prkttt3vtsmca9jm907rtm49.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
