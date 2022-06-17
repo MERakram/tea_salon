@@ -22,13 +22,13 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
       padding: EdgeInsets.only(left: width * 0.06),
       child: Container(
         padding: const EdgeInsets.all(18),
-        width: width * 0.5,
+        width: width * 0.55,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
+              Color(0xFF262a33).withOpacity(1),
               Color(0xFF262a33).withOpacity(0.8),
               Color(0xFF262a33).withOpacity(0.4),
-              Color(0xFF262a33).withOpacity(0.3),
               Color(0xFF262a33).withOpacity(0.2),
               Color(0xFF262a33).withOpacity(0.1),
               Color(0xFF262a33).withOpacity(0.05),
@@ -36,37 +36,35 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(30),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: width * 0.45,
-              width: width * 0.45,
+              height: height*0.2,
+              width: width*0.5,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
-                  'assets/images/coffee.jpg',
-                  fit: BoxFit.fill,
+                  'assets/images/chi-chen.jpg',
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
             SizedBox(
-              height: height * 0.01,
+              height: height*0.01,
             ),
-
             Text(widget.productName),
              SizedBox(
-              height: height*0.01,
-
+               height: height*0.001,
             ),
             Text(
               widget.productDescription,
               style: TextStyle(color: Colors.grey[500]),
             ),
             SizedBox(
-              height: height * 0.01,
+              height: height*0.001,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
