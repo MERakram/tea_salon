@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, unnecessary_null_comparison, prefer_if_null_operators
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -6,6 +6,7 @@ import 'package:tea_salon/controllers/Add_to_wishlist.dart';
 import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
+import 'package:tea_salon/pages/profilelanding.dart';
 
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
@@ -16,7 +17,6 @@ class HomePage extends StatefulWidget {
   final fetch_Special_Offers = Get.put(Fetch_Special_Offers());
   final fetch_Latest_Offers = Get.put(Fetch_Latest_Offers());
   final add_to_wishlist_controller = Get.put(Add_to_wishlist_controller());
-
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             actions: [
               IconButton(
                   onPressed: () {
-                    Get.to(ProfilePage());
+                    Get.to(() => ProfileLanding());
                   },
                   icon: Icon(Icons.person))
             ],
