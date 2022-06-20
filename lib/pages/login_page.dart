@@ -1,11 +1,10 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, non_constant_identifier_names
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/main.dart';
 import 'package:tea_salon/pages/register_page.dart';
-
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -131,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               const Text('Dont have account?'),
               TextButton(
-                  onPressed: () => Get.to(RegisterPage()),
+                  onPressed: () =>Get.to(()=>RegisterPage()),
                   child: const Text('Register now'))
             ],
           ),

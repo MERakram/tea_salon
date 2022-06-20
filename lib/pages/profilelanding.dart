@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:tea_salon/pages/ProfilePage.dart';
+import 'package:tea_salon/pages/auth_page.dart';
 import 'package:tea_salon/pages/login_page.dart';
 class ProfileLanding extends StatefulWidget {
   const ProfileLanding({Key? key}) : super(key: key);
