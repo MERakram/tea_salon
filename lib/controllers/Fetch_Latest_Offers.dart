@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:tea_salon/models/Product.dart';
 
 class Fetch_Latest_Offers extends GetxController{
