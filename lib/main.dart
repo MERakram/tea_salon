@@ -11,6 +11,8 @@ Future main() async {
   runApp(const MyApp());
 }
 
+final navigatorkey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: navigatorkey,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,

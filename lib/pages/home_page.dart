@@ -7,12 +7,10 @@ import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
 import 'package:tea_salon/pages/profilelanding.dart';
-
-import '../components/Gradient_outline.dart';
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
 import '../controllers/Fetch_Latest_Offers.dart';
-import 'ProfilePage.dart';
+
 
 class HomePage extends StatefulWidget {
   final fetch_Special_Offers = Get.put(Fetch_Special_Offers());

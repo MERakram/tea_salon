@@ -14,6 +14,7 @@ class _ProfileLandingState extends State<ProfileLanding> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: StreamBuilder<User?>(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
@@ -30,7 +31,7 @@ class _ProfileLandingState extends State<ProfileLanding> {
                 child: Text('Something went Wrong'),
               );
             } else {
-              return LoginPage();
+              return Center(child: LoginPage());
             }
           },
         ),
