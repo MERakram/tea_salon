@@ -13,6 +13,7 @@ class HorizontalCoffeeCard extends StatefulWidget {
 }
 
 class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
+  final Style =TextStyle(fontFamily: 'Raleway',fontWeight: FontWeight.w500,fontSize: 18);
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -55,7 +56,7 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
             SizedBox(
               height: height*0.01,
             ),
-            Text(widget.productName),
+            Text(widget.productName,style: Style),
              SizedBox(
                height: height*0.001,
             ),

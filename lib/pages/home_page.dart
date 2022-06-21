@@ -6,6 +6,7 @@ import 'package:tea_salon/components/drink_type_cards.dart';
 import 'package:tea_salon/components/navIcon.dart';
 import 'package:tea_salon/controllers/Add_to_wishlist.dart';
 import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
+import 'package:tea_salon/pages/details_page.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
 import 'package:tea_salon/pages/notification_page.dart';
 import 'package:tea_salon/pages/profilelanding.dart';
@@ -247,12 +248,15 @@ class _HomePageState extends State<HomePage> {
                     itemCount: controller.productList.length,
                     physics: const BouncingScrollPhysics(parent: null),
                     itemBuilder: (BuildContext context, int index) {
-                      return HorizontalCoffeeCard(
-                          controller.productList[index].id,
-                          controller.productList[index].productName,
-                          controller.productList[index].productImage,
-                          controller.productList[index].productDescription,
-                          controller.productList[index].price);
+                      return GestureDetector(
+                        onTap: ()=>Get.to(Details_page(controller.productList[index])),
+                        child: HorizontalCoffeeCard(
+                            controller.productList[index].id,
+                            controller.productList[index].productName,
+                            controller.productList[index].productImage,
+                            controller.productList[index].productDescription,
+                            controller.productList[index].price),
+                      );
                     },
                   );
                 }),
