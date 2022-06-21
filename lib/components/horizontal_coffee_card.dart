@@ -81,7 +81,7 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
                         TextSpan(
                           text: widget.price.toString(),
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               fontWeight: FontWeight.bold,
                               color: Colors.white),
                         )
@@ -89,7 +89,7 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.orange),
