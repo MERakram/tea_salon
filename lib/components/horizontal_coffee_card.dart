@@ -47,7 +47,7 @@ class _HorizontalCoffeeCardState extends State<HorizontalCoffeeCard> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
-                  'assets/images/chi-chen.jpg',
+                  widget.productImage,
                   fit: BoxFit.cover,
                 ),
               ),
