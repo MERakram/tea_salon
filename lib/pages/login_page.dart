@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/main.dart';
 import 'package:tea_salon/pages/register_page.dart';
+
 class LoginPage extends StatefulWidget {
   LoginPage({Key? key}) : super(key: key);
 
@@ -15,6 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -28,114 +30,129 @@ class _LoginPageState extends State<LoginPage> {
     Size size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
-    return Padding(
-      padding: const EdgeInsets.all(14.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Text(
-            'Hello Again!',
-            style: TextStyle(fontSize: 38),
-          ),
-          const Text(
-            'Let\'s see What you\'re drinking today',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 28),
-          ),
-          //email filed
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.transparent,
-              boxShadow: [
-                BoxShadow(
-                  // color: const Color(0xFF777676).withOpacity(0.1),
-                  color: const Color(0xFF141921).withOpacity(1),
-                  spreadRadius: -2,
-                  blurRadius: 2,
-                  offset: const Offset(0, 0),
-                ),
-              ],
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              'Hello Again!',
+              style: TextStyle(fontSize: 38),
             ),
-            width: width * 0.9,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Enter Email',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+            const Text(
+              'Let\'s see What you\'re drinking today',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 28),
+            ),
+            //email filed
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.transparent,
+                boxShadow: [
+                  BoxShadow(
+                    // color: const Color(0xFF777676).withOpacity(0.1),
+                    color: const Color(0xFF141921).withOpacity(1),
+                    spreadRadius: -2,
+                    blurRadius: 2,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
               ),
-              autofocus: true,
-              controller: emailController,
-            ),
-          ),
-          //password filed
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.transparent,
-              boxShadow: [
-                BoxShadow(
-                  // color: const Color(0xFF777676).withOpacity(0.1),
-                  color: const Color(0xFF141921).withOpacity(1),
-                  spreadRadius: -2,
-                  blurRadius: 2,
-                  offset: const Offset(0, 0),
+              width: width * 0.9,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Enter Email',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
-              ],
-            ),
-            width: width * 0.9,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: 'Password',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Colors.transparent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+                autofocus: true,
+                controller: emailController,
               ),
-              controller: passwordController,
             ),
-          ),
-          // forget password button
-          Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
+            //password filed
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.transparent,
+                boxShadow: [
+                  BoxShadow(
+                    // color: const Color(0xFF777676).withOpacity(0.1),
+                    color: const Color(0xFF141921).withOpacity(1),
+                    spreadRadius: -2,
+                    blurRadius: 2,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
+              width: width * 0.9,
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                controller: passwordController,
+              ),
+            ),
+            // forget password button
+            Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Forget Your password?',
+                    ))),
+            //login button
+            ElevatedButton(onPressed: login, child: const Text('Login')),
+            const Text('- Or -'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // zidlna icon ta3 google hna
+                IconButton(
                   onPressed: () {},
-                  child: const Text(
-                    'Forget Your password?',
-                  ))),
-          //login button
-          ElevatedButton(onPressed: login, child: const Text('Login')),
-          const Text('- Or -'),
-          Row(
-            children: [
-              // zidlna icon ta3 google hna
-              //IconButton(onPressed: (){}, icon: icon),
-              //zidlna icon ta3 fb hna
-              //IconButton(onPressed: (){}, icon: icon),
-            ],
-          ),
-          // register row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('Dont have account?'),
-              TextButton(
-                  onPressed: () =>Get.to(()=>RegisterPage()),
-                  child: const Text('Register now'))
-            ],
-          ),
-          const SizedBox()
-        ],
+                  icon: Icon(Icons.abc),
+                ),
+                //zidlna icon ta3 fb hna
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.abc),
+                ),
+              ],
+            ),
+            // register row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Dont have account?'),
+                TextButton(
+                    onPressed: () => Get.to(() => RegisterPage()),
+                    child: const Text('Register now'))
+              ],
+            ),
+            const SizedBox()
+          ],
+        ),
       ),
     );
   }
