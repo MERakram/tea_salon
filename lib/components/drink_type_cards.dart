@@ -34,7 +34,7 @@ class Drink_type extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      color: isSelected ? Colors.orange : Colors.white),
+                      color: isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207)),
                 ),
               ),
               Positioned(
@@ -44,7 +44,7 @@ class Drink_type extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 50,
                       fontWeight: FontWeight.bold,
-                      color: isSelected ? Colors.orange : Colors.white),
+                      color: isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207)),
                 ),
               ),
             ],

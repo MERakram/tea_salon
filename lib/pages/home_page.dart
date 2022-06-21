@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:tea_salon/components/drink_type_cards.dart';
+import 'package:tea_salon/components/navIcon.dart';
 import 'package:tea_salon/controllers/Add_to_wishlist.dart';
 import 'package:tea_salon/controllers/Fetch_Special_Offers.dart';
 import 'package:tea_salon/pages/favorite_page.dart';
@@ -11,7 +12,6 @@ import 'package:tea_salon/pages/profilelanding.dart';
 import '../components/horizontal_coffee_card.dart';
 import '../components/vertical_coffee_cards.dart';
 import '../controllers/Fetch_Latest_Offers.dart';
-
 
 class HomePage extends StatefulWidget {
   final fetch_Special_Offers = Get.put(Fetch_Special_Offers());
@@ -24,7 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List TypesList = [
-  //[type,status]
+    //[type,status]
     [
       'Coffee',
       true,
@@ -51,20 +51,19 @@ class _HomePageState extends State<HomePage> {
       _selectedIndex = index;
     });
   }
+
   void type_selected(int index) {
     setState(() {
-      for(int i=0;i<TypesList.length;i++){
-        TypesList[i][1]=false;
+      for (int i = 0; i < TypesList.length; i++) {
+        TypesList[i][1] = false;
       }
-      TypesList[index][1]=true;
+      TypesList[index][1] = true;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
     return GestureDetector(
@@ -102,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: const EdgeInsets.all(9.0),
                   child: SvgPicture.asset(
-                    'assets/images/apps.svg',
+                    'assets/icons/apps.svg',
                     color: Colors.grey[600],
                     fit: BoxFit.scaleDown,
                   ),
@@ -133,7 +132,7 @@ class _HomePageState extends State<HomePage> {
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: SvgPicture.asset(
-                      'assets/images/user.svg',
+                      'assets/icons/user.svg',
                       color: Colors.grey[600],
                       fit: BoxFit.scaleDown,
                     ),
@@ -145,7 +144,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.transparent,
           ),
           bottomNavigationBar: BottomNavigationBar(
-            iconSize: 26,
+            iconSize: 30,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             onTap: _onItemTapped,
@@ -153,7 +152,9 @@ class _HomePageState extends State<HomePage> {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
               BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ''),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.notifications), label: ''),
+                  icon: NamedIcon(
+                      iconData: Icons.notifications, notificationCount: 2),
+                  label: ''),
             ],
           ),
           body: ListView(
@@ -201,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: SvgPicture.asset(
-                        'assets/images/search.svg',
+                        'assets/icons/search.svg',
                         color: Colors.grey[600],
                         width: 10,
                       ),
@@ -227,7 +228,8 @@ class _HomePageState extends State<HomePage> {
                       isSelected: TypesList[index][1],
                       onTap: () {
                         type_selected(index);
-                      },);
+                      },
+                    );
                   },
                 ),
               ),
