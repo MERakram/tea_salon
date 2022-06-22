@@ -6,8 +6,8 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:tea_salon/pages/home_page.dart';
 
 Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

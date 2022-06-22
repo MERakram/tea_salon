@@ -12,6 +12,20 @@ class Drink_type extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Style1 = TextStyle(
+      fontFamily: 'Raleway bold',
+      fontWeight: FontWeight.w900,
+      fontSize: 22,
+      color:
+          isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207),
+    );
+    final Style2 = TextStyle(
+      fontFamily: 'Raleway bold',
+      fontWeight: FontWeight.w900,
+      fontSize: 50,
+      color:
+      isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207),
+    );
     Size size = MediaQuery.of(context).size;
     double height = size.height;
     double width = size.width;
@@ -31,20 +45,14 @@ class Drink_type extends StatelessWidget {
               Positioned(
                 child: Text(
                   drink_type,
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207)),
+                  style: Style1,
                 ),
               ),
               Positioned(
                 top: -15,
                 child: Text(
                   '.',
-                  style: TextStyle(
-                      fontSize: 50,
-                      fontWeight: FontWeight.bold,
-                      color: isSelected ? Colors.orange : const Color.fromARGB(255, 207, 207, 207)),
+                  style: Style2,
                 ),
               ),
             ],
