@@ -72,6 +72,9 @@ flutter:
     - family: Raleway
       fonts:
         - asset: assets/font/Raleway-Regular.ttf
+    - family: Raleway bold
+      fonts:
+        - asset: assets/font/Raleway-ExtraBold.ttf
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
