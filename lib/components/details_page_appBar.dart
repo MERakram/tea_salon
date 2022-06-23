@@ -38,6 +38,9 @@ class _details_page_appBarState extends State<details_page_appBar> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    double height = size.height;
+    double width = size.width;
     // TODO: implement build
     return Container(
       child: Stack(
@@ -65,60 +68,104 @@ class _details_page_appBarState extends State<details_page_appBar> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(12),
-                      gradient: LinearGradient(
-                        colors: [
-                         Colors.white10,
-                         Colors.white10,
-                          Colors.black12,
-                          Colors.black54,
-                          Colors.black87,
-                          Colors.black,
-                          Colors.black,
-                          Colors.black,
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(12),
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF262a33).withOpacity(1),
+                            Color(0xFF262a33).withOpacity(1),
+                            Color(0xFF262a33).withOpacity(0.6),
+                            Color(0xFF262a33).withOpacity(0.2),
+                            Color(0xFF262a33).withOpacity(0.1),
+                            Color(0xFF262a33).withOpacity(0.05),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: SvgPicture.asset(
+                        'assets/icons/back.svg',
+                        color: Colors.grey[600],
+                        fit: BoxFit.scaleDown,
+                        height: 25,
                       ),
                     ),
-                    padding: EdgeInsets.all(6),
-                    child: SvgPicture.asset(
-                      'assets/icons/apps.svg',
-                      color: Colors.grey[600],
-                      fit: BoxFit.scaleDown,
-                      height: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xFF0c0f14),
                     ),
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFF262a33).withOpacity(1),
-                          Color(0xFF262a33).withOpacity(0.8),
-                          Color(0xFF262a33).withOpacity(0.6),
-                          Color(0xFF262a33).withOpacity(0.2),
-                          Color(0xFF262a33).withOpacity(0.1),
-                          Color(0xFF262a33).withOpacity(0.05),
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF262a33).withOpacity(1),
+                            Color(0xFF262a33).withOpacity(0.8),
+                            Color(0xFF262a33).withOpacity(0.6),
+                            Color(0xFF262a33).withOpacity(0.2),
+                            Color(0xFF262a33).withOpacity(0.1),
+                            Color(0xFF262a33).withOpacity(0.05),
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      borderRadius: BorderRadius.circular(10),
+                      padding: EdgeInsets.all(8),
+                      child: SvgPicture.asset(
+                        'assets/icons/heart.svg',
+                        color: Colors.grey[600],
+                        fit: BoxFit.scaleDown,
+                        height: 25,
+                      ),
                     ),
-                    padding: EdgeInsets.all(4),
-                    child: SvgPicture.asset(
-                      'assets/icons/apps.svg',
-                      color: Colors.grey[600],
-                      fit: BoxFit.scaleDown,
-                      height: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xFF0c0f14),
                     ),
                   ),
                 ],
               ),
             ),
-          )
+          ),
+          Positioned(
+            top: height * 0.5,
+            left: width / 2.2,
+            child: Row(
+              children: [
+                Container(
+                  height: 12,
+                  width: 12,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 6),
+                  height: 12,
+                  width: 12,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF757575),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 6),
+                  height: 12,
+                  width: 12,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF757575),
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
